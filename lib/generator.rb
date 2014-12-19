@@ -12,4 +12,15 @@ class Generator
       Set.new(set).add(a).to_a.sort
     end
   end
+
+  def self.generate_all(sets)
+    result = []
+    sets.each do |set|
+      additions = Generator.generate(set)
+      additions.each do |addition|
+        result.push(addition)
+      end
+    end
+    result.sort
+  end
 end
