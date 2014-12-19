@@ -34,4 +34,14 @@ class Generator
     end
     []  # TODO: need to fail here
   end
+
+  def self.find_all(n)
+    sets = [[1]]
+    (0..7).each do
+      solutions = sets.select {|set| set.include?(n) }
+      return solutions unless solutions.empty?
+      sets = Generator.generate_all(sets)
+    end
+    []  # TODO: need to fail here
+  end
 end
