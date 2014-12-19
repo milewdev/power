@@ -24,14 +24,6 @@ class Generator
     result.to_a.sort
   end
 
-  def self.generations(g)
-    result = [[1]]
-    (1...g).each do
-      result = Generator.generate_all(result)
-    end
-    result
-  end
-
   def self.find(n)
     sets = [[1]]
     (0..7).each do
