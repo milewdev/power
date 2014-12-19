@@ -14,13 +14,21 @@ class Generator
   end
 
   def self.generate_all(sets)
-    result = []
+    result = Set.new
     sets.each do |set|
       additions = Generator.generate(set)
       additions.each do |addition|
-        result.push(addition)
+        result.add(addition)
       end
     end
-    result.sort
+    result.to_a.sort
+  end
+
+  def self.generations(g)
+    result = [[1]]
+    (1...g).each do
+      result = Generator.generate_all(result)
+    end
+    result
   end
 end
