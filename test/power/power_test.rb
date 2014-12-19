@@ -39,7 +39,7 @@ describe 'power' do
 
   describe 'find(15)' do
     it 'returns [1, 2, 4, 5, 10, 15]' do
-      Power.find(15).must_equal [1, 2, 4, 5, 10, 15]
+      Power.find(15).must_equal [1, 2, 3, 5, 10, 15]
     end
   end
 end
