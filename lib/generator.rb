@@ -9,7 +9,7 @@ end
 
 # TODO: need a better name
 class Generator
-  def self.generate(power_set)                          # [1,2]
+  def self.generate_next_power_sets(power_set)          # [1,2]
     next_powers = generate_next_powers(power_set)       # [1,2] => [3,4]
     generate_power_sets(power_set, next_powers)         # [ [1,2,3], [1,2,4] ]
   end
@@ -41,7 +41,7 @@ class Generator
   def self.generate_all(sets)
     result = []
     sets.each do |set|
-      additions = Generator.generate(set)
+      additions = Generator.generate_next_power_sets(set)
       additions.each do |addition|
         result.set_add(addition)
       end
