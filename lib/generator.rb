@@ -9,23 +9,33 @@ end
 
 # TODO: need a better name
 class Generator
-  def self.generate(set)                    # [1,2]
-    additions = generate_new_numbers(set)   # [2,3,4]
-    additions = (additions - set)           # [3,4]
-    additions.map do |a|
-      set.dup.set_add(a).sort
-    end
+  def self.generate(power_set)                          # [1,2]
+    next_powers = generate_next_powers(power_set)       # [1,2] => [3,4]
+    generate_power_sets(power_set, next_powers)         # [ [1,2,3], [1,2,4] ]
   end
 
-  def self.generate_new_numbers(list)       # [1,2]
-    new_numbers = []
-    list.each do |i|                        # i = 1,2
-      list.each do |j|                      # j = 1,2
-        new_number = i + j                  # 1+1=2, 1+2=3, 2+1=3, 2+2=4
-        new_numbers.set_add(new_number)     # {2,3,4}  new_numbers a set, so 3 only added once
+  def self.generate_next_powers(power_set)              # [1,2]
+    next_powers = []
+    power_set.each do |power1|                          # power1 = 1,2
+      power_set.each do |power2|                        # power2 = 1,2
+        next_power = power1 + power2                    # 1+1=2, 1+2=3, 2+1=3, 2+2=4
+        next_powers.set_add(next_power)                 # [2,3,4]  note: set_add drops second 3
       end
     end
-    new_numbers
+    next_powers - power_set                             # [2,3,4] - [1,2] = [3,4]
+  end
+
+  def self.generate_power_sets(power_set, next_powers)  # [1,2], [3,4]
+    next_powers.map do |next_power|
+      generate_power_set(power_set, next_power)
+    end                                                 # [1,2, 3] and [1,2, 4]
+  end
+
+  def self.generate_power_set(power_set, next_power)    # [1,2,4], 3
+    power_set                                           # [1,2,4]
+      .dup                                              # [1,2,4]
+      .set_add(next_power)                              # [1,2,4,3]  note: set_add drops duplicates
+      .sort                                             # [1,2,3,4]
   end
 
   def self.generate_all(sets)
