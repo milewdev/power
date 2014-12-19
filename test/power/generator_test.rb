@@ -67,3 +67,36 @@ describe 'generator' do
     end
   end
 end
+
+
+describe 'generator' do
+  describe 'find(1)' do
+    it 'returns [1]' do
+      Generator.find(1).must_equal [1]
+    end
+  end
+
+  describe 'find(2)' do
+    it 'returns [1,2]' do
+      Generator.find(2).must_equal [1,2]
+    end
+  end
+
+  describe 'find(3)' do
+    it 'returns [1,2,3]' do
+      Generator.find(3).must_equal [1,2,3]
+    end
+  end
+
+  describe 'find(4)' do
+    it 'returns [1,2,4]' do
+      Generator.find(4).must_equal [1,2,4]
+    end
+  end
+
+  describe 'find(5)' do
+    it 'returns [1,2,3,5]' do
+      Generator.find(5).must_equal [1,2,3,5]
+    end
+  end
+end
