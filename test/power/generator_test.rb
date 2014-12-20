@@ -22,21 +22,21 @@ end
 
 
 describe 'generator' do
-  describe 'generate_all([[1]])' do
+  describe 'generate_all_next_power_sets([[1]])' do
     it 'returns [[1,2]]' do
-      Generator.generate_all([[1]]).must_equal [[1,2]]
+      Generator.generate_all_next_power_sets([[1]]).must_equal [[1,2]]
     end
   end
 
-  describe 'generate_all([[1], [1]])' do
+  describe 'generate_all_next_power_sets([[1], [1]])' do
     it 'returns [[1,2]]' do
-      Generator.generate_all([[1], [1]]).must_equal [[1,2]]
+      Generator.generate_all_next_power_sets([[1], [1]]).must_equal [[1,2]]
     end
   end
 
-  describe 'generate_all([[1], [1,2]])' do
+  describe 'generate_all_next_power_sets([[1], [1,2]])' do
     it 'returns [[1,2], [1,2,3], [1,2,4]]' do
-      Generator.generate_all([[1], [1,2]]).must_equal [[1,2], [1,2,3], [1,2,4]]
+      Generator.generate_all_next_power_sets([[1], [1,2]]).must_equal [[1,2], [1,2,3], [1,2,4]]
     end
   end
 end

@@ -9,6 +9,17 @@ end
 
 # TODO: need a better name
 class Generator
+  def self.generate_all_next_power_sets(power_sets)
+    result = []
+    power_sets.each do |set|
+      additions = Generator.generate_next_power_sets(set)
+      additions.each do |addition|
+        result.set_add(addition)
+      end
+    end
+    result.sort
+  end
+
   def self.generate_next_power_sets(power_set)          # [1,2]
     next_powers = generate_next_powers(power_set)       # [1,2] => [3,4]
     build_power_sets(power_set, next_powers)            # [ [1,2,3], [1,2,4] ]
@@ -38,24 +49,13 @@ class Generator
       .sort                                             # [1,2,3,4]
   end
 
-  def self.generate_all(sets)
-    result = []
-    sets.each do |set|
-      additions = Generator.generate_next_power_sets(set)
-      additions.each do |addition|
-        result.set_add(addition)
-      end
-    end
-    result.sort
-  end
-
   def self.find(n)
     sets = [[1]]
     (0..7).each do
       sets.each do |set|
         return set if set.include?(n)
       end
-      sets = Generator.generate_all(sets)
+      sets = Generator.generate_all_next_power_sets(sets)
     end
     []  # TODO: need to fail here
   end
@@ -65,7 +65,7 @@ class Generator
     (0..7).each do
       solutions = sets.select {|set| set.include?(n) }
       return solutions unless solutions.empty?
-      sets = Generator.generate_all(sets)
+      sets = Generator.generate_all_next_power_sets(sets)
     end
     []  # TODO: need to fail here
   end
