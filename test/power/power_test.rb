@@ -44,6 +44,7 @@ describe 'power' do
   end
 end
 
+
 describe 'generator' do
   describe 'generate_next_power_sets([1])' do
     it 'returns [[1,2]]' do
