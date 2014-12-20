@@ -17,10 +17,10 @@ class Power
   end
 
   def self.generate_next_power_sets(power_set)
-    next_powers(power_set).map { |power| power_set.dup.push(power).sort }   # sort so that uniq can be used later
+    multiplication_combinations(power_set).map { |power| power_set.dup.push(power).sort }   # sort so that uniq can be used later
   end
 
-  def self.next_powers(power_set)
+  def self.multiplication_combinations(power_set)
     power_set.product(power_set).map { |p1, p2| p1+p2 }.uniq - power_set
   end
 end
