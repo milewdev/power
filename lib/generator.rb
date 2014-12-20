@@ -11,7 +11,7 @@ end
 class Generator
   def self.generate_next_power_sets(power_set)          # [1,2]
     next_powers = generate_next_powers(power_set)       # [1,2] => [3,4]
-    generate_power_sets(power_set, next_powers)         # [ [1,2,3], [1,2,4] ]
+    build_power_sets(power_set, next_powers)            # [ [1,2,3], [1,2,4] ]
   end
 
   def self.generate_next_powers(power_set)              # [1,2]
@@ -25,13 +25,13 @@ class Generator
     next_powers - power_set                             # [2,3,4] - [1,2] = [3,4]
   end
 
-  def self.generate_power_sets(power_set, next_powers)  # [1,2], [3,4]
+  def self.build_power_sets(power_set, next_powers)     # [1,2], [3,4]
     next_powers.map do |next_power|
-      generate_power_set(power_set, next_power)
+      build_power_set(power_set, next_power)
     end                                                 # [1,2, 3] and [1,2, 4]
   end
 
-  def self.generate_power_set(power_set, next_power)    # [1,2,4], 3
+  def self.build_power_set(power_set, next_power)       # [1,2,4], 3
     power_set                                           # [1,2,4]
       .dup                                              # [1,2,4]
       .set_add(next_power)                              # [1,2,4,3]  note: set_add drops duplicates
