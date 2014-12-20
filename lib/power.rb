@@ -26,14 +26,10 @@ class Power
   end
 
   def self.generate_all_next_power_sets(power_sets)
-    result = []
-    power_sets.each do |set|
-      additions = generate_next_power_sets(set)
-      additions.each do |addition|
-        result.set_add(addition)
-      end
+    next_power_sets = power_sets.reduce([]) do |next_power_sets, power_set|
+      next_power_sets.concat(generate_next_power_sets(power_set))
     end
-    result.sort
+    next_power_sets.uniq.sort
   end
 
   def self.generate_next_power_sets(power_set)        # [1,2]
@@ -60,8 +56,8 @@ class Power
 
   def self.build_power_set(power_set, next_power)     # [1,2,4], 3
     power_set                                         # [1,2,4]
-    .dup                                              # [1,2,4]
-    .set_add(next_power)                              # [1,2,4,3]  note: set_add drops duplicates
-    .sort                                             # [1,2,3,4]
+      .dup                                            # [1,2,4]
+      .set_add(next_power)                            # [1,2,4,3]  note: set_add drops duplicates
+      .sort                                           # [1,2,3,4]
   end
 end
