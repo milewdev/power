@@ -13,10 +13,7 @@ class Power
   end
 
   def self.generate_all_next_power_sets(power_sets)
-    next_power_sets = power_sets.reduce([]) do |next_power_sets, power_set|
-      next_power_sets.concat(generate_next_power_sets(power_set))
-    end
-    next_power_sets.uniq.sort
+    power_sets.map { |power_set| generate_next_power_sets(power_set) }.flatten(1).uniq.sort
   end
 
   def self.generate_next_power_sets(power_set)
