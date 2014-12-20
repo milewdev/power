@@ -12,14 +12,7 @@ end
 
 class Power
   def self.find(n)
-    power_sets = [[1]]
-    (0..7).each do
-      power_sets.each do |power_set|
-        return power_set if power_set.include?(n)
-      end
-      power_sets = generate_all_next_power_sets(power_sets)
-    end
-    []  # TODO: need to fail here
+    find_all(n).first
   end
 
   def self.find_all(n)
