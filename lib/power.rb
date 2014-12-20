@@ -6,18 +6,18 @@ class Power
     end
 
     def find_all(n)
-      power_sets = [[1]]
+      multiplication_sets = [[1]]
       loop do
-        solutions = select_sets_containing_n(power_sets, n)
+        solutions = select_sets_containing(multiplication_sets, n)
         return solutions unless solutions.empty?
-        power_sets = do_another_multiplication(power_sets)
+        multiplication_sets = do_another_multiplication(multiplication_sets)
       end
     end
 
   private
 
-    def select_sets_containing_n(power_sets, n)
-      power_sets.select { |power_set| power_set.include?(n) }
+    def select_sets_containing(sets, n)
+      sets.select { |set| set.include?(n) }
     end
 
     def do_another_multiplication(power_sets)
