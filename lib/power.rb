@@ -45,17 +45,9 @@ class Power
     next_powers - power_set                           # [2,3,4] - [1,2] = [3,4]
   end
 
-  def self.build_power_sets(power_set, next_powers)   # [1,2], [3,4]
-    next_powers.map do |next_power|
-      build_power_set(power_set, next_power)
+  def self.build_power_sets(power_set, powers)        # [1,2], [3,4]
+    powers.map do |power|
+      power_set.dup.push(power).sort
     end                                               # [1,2, 3] and [1,2, 4]
-  end
-
-  def self.build_power_set(power_set, next_power)     # [1,2,4], 3
-    power_set                                         # [1,2,4]
-      .dup                                            # [1,2,4]
-      .push(next_power)                               # [1,2,4,3]
-      .uniq                                           # drop duplicates
-      .sort                                           # [1,2,3,4]
   end
 end
