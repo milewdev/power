@@ -8,13 +8,17 @@ class Power
     def find_all(n)
       power_sets = [[1]]
       loop do
-        solutions = power_sets.select { |power_set| power_set.include?(n) }
+        solutions = select_sets_containing_n(power_sets, n)
         return solutions unless solutions.empty?
         power_sets = do_another_multiplication(power_sets)
       end
     end
 
   private
+
+    def select_sets_containing_n(power_sets, n)
+      power_sets.select { |power_set| power_set.include?(n) }
+    end
 
     def do_another_multiplication(power_sets)
       power_sets.map { |power_set| generate_next_power_sets(power_set) }.flatten(1).uniq.sort
