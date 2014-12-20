@@ -55,9 +55,9 @@ $
 
 ###Code Notes
 
--   There are two entry points into the power library, Power#find(n) and
-Power#find_all(n).  Both are in the file lib/power.rb.  n is the exponent,    as
-in ```x ** n```.
+-   There are two entry points into the power library, ```Power#find(n)```
+and ````Power#find_all(n)```.  Both are in the file ```lib/power.rb```.  n is
+the exponent, as in ```x ** n```.
 
 -   power finds solutions by generating sets of successive multiplications until one
 (or more) sets are found containing the sought exponent n.  Given a set of
@@ -67,14 +67,14 @@ elements in the set. Since ```x**i * x**j``` is the same as ```x**(i+j)```, new
 multiplications can be found by simply generating all combinations of adding
 pairs of numbers in the set.  For example, [1,2] will generate the numbers 1+1,
 1+2, 2+2, or 2,3,4 (```Power#next_values```).  New sets are created by adding
-each of these numbers to the original set, so this results in [1,2, 2], [1,2,
-3], and [1,2, 4] (```Power#multiply``` and ```Power#build_set```).  Sets with
+each of these numbers to the original set, so this results in [1,2,2],
+[1,2,3], and [1,2,4] (```Power#multiply``` and ```Power#build_set```).  Sets with
 duplicate elements, such as [1,2,2], are discarded as we only want to do any
 given multiplication once, so we end up with [1,2,3] and [1,2,4].
 
     If n is not in any of the newly generated sets, then each of those sets is used
-to produce the next generation of sets, and so on (```Power#find_all``` and
-```Power#multiply_each```).
+to produce the next generation of sets, and so on (```Power#find_all```
+and ```Power#multiply_each```).
 
 -   To run tests:
 
@@ -87,8 +87,8 @@ to produce the next generation of sets, and so on (```Power#find_all``` and
 tests, keeping things simple. As a result, Array#uniq is used here and there.
 Also, Arrays can be sorted, simplifying comparisons in tests.
 
--   Power itself does no bounds or type checking on n.  The scripts ```find```
-```find_all``` do rudimentary checks.
+-   Power itself does no bounds or type checking on n.  The
+scripts ```find``` and ```find_all``` do rudimentary checks.
 
 -   ```#find_all``` was implemented in order to show that the program generates the
 solution listed in the problem statement, [1, 2, 4, 5, 10, 15].  The solution
