@@ -1,5 +1,4 @@
 class Power
-
   def self.find(n)
     find_all(n).first
   end
