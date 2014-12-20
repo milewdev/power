@@ -49,20 +49,58 @@ To find all of the smallest sets of multiplications required to raise any number
 ```shell
 $ ./find_all 9
 [[1, 2, 3, 6, 9], [1, 2, 4, 5, 9], [1, 2, 4, 8, 9]]
+$
 ```
 
 
 ###Code Notes
 
--  To run tests:
-   ```shell
-   $ cd ~/work/power
-   $ rake
-   ```
--  Used Array instead of Set so array literals could be used in the tests, keeping things simple.
-   As a result, Array#uniq is used here and there.  Also, Arrays can be sorted, simplifying
-   comparisons in tests.
--  To keep the program simple, there is no checking that n is negative or too large.
--  Added #find_all in order to generate the solution in the problem statement;
--  There was no need to use an exception to stop the search.
--  Could not think of better names for #multiply_each and #multiply.
+-   There are two entry points into the power library, Power#find(n) and
+Power#find_all(n).  Both are in the file lib/power.rb.  n is the exponent,    as
+in ```x ** n```.
+
+-   power finds solutions by generating sets of successive multiplications until one
+(or more) sets are found containing the sought exponent n.  Given a set of
+exponents [i,j,k,...] that does not contain n, power generates new sets to
+search by generating all possible unique combinations of multiplications of the
+elements in the set. Since ```x**i * x**j``` is the same as ```x**(i+j)```, new
+multiplications can be found by simply generating all combinations of adding
+pairs of numbers in the set.  For example, [1,2] will generate the numbers 1+1,
+1+2, 2+2, or 2,3,4 (```Power#next_values```).  New sets are created by adding
+each of these numbers to the original set, so this results in [1,2, 2], [1,2,
+3], and [1,2, 4] (```Power#multiply``` and ```Power#build_set```).  Sets with
+duplicate elements, such as [1,2,2], are discarded as we only want to do any
+given multiplication once, so we end up with [1,2,3] and [1,2,4].
+
+    If n is not in any of the newly generated sets, then each of those sets is used
+to produce the next generation of sets, and so on (```Power#find_all``` and
+```Power#multiply_each```).
+
+-   To run tests:
+
+    ```shell
+    $ cd ~/work/power
+    $ rake
+    ```
+
+-   Arrays were used instead of Sets so that array literals could be used in the
+tests, keeping things simple. As a result, Array#uniq is used here and there.
+Also, Arrays can be sorted, simplifying comparisons in tests.
+
+-   Power itself does no bounds or type checking on n.  The scripts ```find```
+```find_all``` do rudimentary checks.
+
+-   ```#find_all``` was implemented in order to show that the program generates the
+solution listed in the problem statement, [1, 2, 4, 5, 10, 15].  The solution
+returned by ```#find``` is [1, 2, 3, 5, 10, 15].
+
+-   As ```#find_all``` finds all solutions and ```#find``` invokes ```#find_all```,
+an exception was not used to end the search the moment a solution was found.  This
+optimization could be added to ```#build_set```, for example.
+
+-   Another optimization would be to note that due to the commutative nature of
+addition (2+1 is the same as 1+2), only a little over half (n*(n+1)/2) of the
+pair combinations actually need to be generated.
+
+-   Class ```Power``` and methods ```#find```, ```#find_all```, ```#multiply_each```,
+and ```#multiply``` deserve better names.

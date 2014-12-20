@@ -1,3 +1,8 @@
+#
+# Finds all smallest sets of multiplications required to raise any number to the
+# nth power.  #find_all returns all of them, #find returns just the first one.
+# See README.md for more details.
+#
 class Power
   class << self
 
