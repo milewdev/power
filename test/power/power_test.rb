@@ -49,21 +49,21 @@ end
 
 
 describe 'generator' do
-  describe 'generate_all_next_power_sets([[1]])' do
+  describe 'do_another_multiplication([[1]])' do
     it 'returns [[1,2]]' do
-      Power.generate_all_next_power_sets([[1]]).must_equal [[1,2]]
+      Power.do_another_multiplication([[1]]).must_equal [[1,2]]
     end
   end
 
-  describe 'generate_all_next_power_sets([[1], [1]])' do
+  describe 'do_another_multiplication([[1], [1]])' do
     it 'returns [[1,2]]' do
-      Power.generate_all_next_power_sets([[1], [1]]).must_equal [[1,2]]
+      Power.do_another_multiplication([[1], [1]]).must_equal [[1,2]]
     end
   end
 
-  describe 'generate_all_next_power_sets([[1], [1,2]])' do
+  describe 'do_another_multiplication([[1], [1,2]])' do
     it 'returns [[1,2], [1,2,3], [1,2,4]]' do
-      Power.generate_all_next_power_sets([[1], [1,2]]).must_equal [[1,2], [1,2,3], [1,2,4]]
+      Power.do_another_multiplication([[1], [1,2]]).must_equal [[1,2], [1,2,3], [1,2,4]]
     end
   end
 end
