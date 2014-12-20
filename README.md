@@ -80,6 +80,7 @@ and ```Power#multiply_each```).
 
     ```shell
     $ cd ~/work/power
+    $ bundle install
     $ rake
     ```
 

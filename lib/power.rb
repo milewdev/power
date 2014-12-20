@@ -39,7 +39,7 @@ class Power
     # multiply([1,2,3]) => [[1,2,3,4],[1,2,3,5],[1,2,3,6]]
     def multiply(value_set)
       next_values(value_set)                          # [1,2,3] => [4,5,6]
-        .map { |value| build_set(value_set, value) }  # [1,2,3,4], [1,2,3,5], [1,2,3,6]
+        .map { |value| build_set(value_set, value) }  # [[1,2,3,4], [1,2,3,5], [1,2,3,6]]
     end
 
     # build_set([1,2,4], 3) => [1,2,3,4]
