@@ -4,13 +4,16 @@ Dir.glob(File.dirname(me) + '/**/*.rb') { |fn| require fn unless fn == me }
 
 
 class Power
+
+  @attempts = 1..7
+
   def self.find(n)
     find_all(n).first
   end
 
   def self.find_all(n)
     power_sets = [[1]]
-    (0..7).each do
+    @attempts.each do
       solutions = power_sets.select { |set| set.include?(n) }
       return solutions unless solutions.empty?
       power_sets = generate_all_next_power_sets(power_sets)
