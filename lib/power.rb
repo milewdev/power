@@ -41,13 +41,12 @@ class Power
         next_powers.push(next_power)                  # [2,3,3,4]
       end
     end
-    next_powers = next_powers.uniq                    # [2,3,3,4] => [2,3,4]
+    next_powers.uniq!                                 # [2,3,3,4] => [2,3,4]
     next_powers - power_set                           # [2,3,4] - [1,2] = [3,4]
   end
 
-  def self.build_power_sets(power_set, powers)        # [1,2], [3,4]
-    powers.map do |power|
-      power_set.dup.push(power).sort
-    end                                               # [1,2, 3] and [1,2, 4]
+  # build_power_sets([1,2], [3,4]) => [[1,2,3], [1,2,4]]
+  def self.build_power_sets(power_set, powers)
+    powers.map { |power| power_set.dup.push(power).sort }
   end
 end
