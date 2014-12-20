@@ -1,6 +1,6 @@
 # 'require' all files except ourselves.
 me = File.absolute_path(__FILE__)
-Dir.glob(File.dirname(me) + '/**/*.rb') {|fn| require fn unless fn == me }
+Dir.glob(File.dirname(me) + '/**/*.rb') { |fn| require fn unless fn == me }
 
 
 class Array
@@ -12,22 +12,22 @@ end
 
 class Power
   def self.find(n)
-    power_set_collection = [[1]]
+    power_sets = [[1]]
     (0..7).each do
-      power_set_collection.each do |power_set|
+      power_sets.each do |power_set|
         return power_set if power_set.include?(n)
       end
-      power_set_collection = generate_all_next_power_sets(power_set_collection)
+      power_sets = generate_all_next_power_sets(power_sets)
     end
     []  # TODO: need to fail here
   end
 
   def self.find_all(n)
-    sets = [[1]]
+    power_sets = [[1]]
     (0..7).each do
-      solutions = sets.select {|set| set.include?(n) }
+      solutions = power_sets.select { |set| set.include?(n) }
       return solutions unless solutions.empty?
-      sets = generate_all_next_power_sets(sets)
+      power_sets = generate_all_next_power_sets(power_sets)
     end
     []  # TODO: need to fail here
   end
