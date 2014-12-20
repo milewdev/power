@@ -11,3 +11,4 @@ Code Notes
    comparisons in tests.
 -  To keep the program simple, there is no checking that n is negative or too large.
 -  Added #find_all in order to generate the solution in the problem statement;
+-  There was no need to use an exception to stop the search.
