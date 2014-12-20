@@ -68,7 +68,7 @@ multiplications can be found by simply generating all combinations of adding
 pairs of numbers in the set.  For example, [1,2] will generate the numbers 1+1,
 1+2, 2+2, or 2,3,4 (```Power#next_values```).  New sets are created by adding
 each of these numbers to the original set, so this results in [1,2,2],
-[1,2,3], and [1,2,4] (```Power#multiply``` and ```Power#build_set```).  Sets with
+[1,2,3], and [1,2,4] \(```Power#multiply``` and ```Power#build_set```).  Sets with
 duplicate elements, such as [1,2,2], are discarded as we only want to do any
 given multiplication once, so we end up with [1,2,3] and [1,2,4].
 
