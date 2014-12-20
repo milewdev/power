@@ -28,17 +28,11 @@ class Power
     next_power_sets.uniq.sort
   end
 
-  def self.generate_next_power_sets(power_set)        # [1,2]
-    next_powers = generate_next_powers(power_set)     # [1,2] => [3,4]
-    build_power_sets(power_set, next_powers)          # [ [1,2,3], [1,2,4] ]
+  def self.generate_next_power_sets(power_set)
+    generate_next_powers(power_set).map { |power| power_set.dup.push(power).sort }
   end
 
   def self.generate_next_powers(power_set)
     power_set.product(power_set).map { |p1, p2| p1+p2 }.uniq - power_set
-  end
-
-  # build_power_sets([1,2], [3,4]) => [[1,2,3], [1,2,4]]
-  def self.build_power_sets(power_set, powers)
-    powers.map { |power| power_set.dup.push(power).sort }
   end
 end
