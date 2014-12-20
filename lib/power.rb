@@ -33,16 +33,8 @@ class Power
     build_power_sets(power_set, next_powers)          # [ [1,2,3], [1,2,4] ]
   end
 
-  def self.generate_next_powers(power_set)            # [1,2]
-    next_powers = []
-    power_set.each do |power1|                        # power1 = 1,2
-      power_set.each do |power2|                      # power2 = 1,2
-        next_power = power1 + power2                  # 1+1=2, 1+2=3, 2+1=3, 2+2=4
-        next_powers.push(next_power)                  # [2,3,3,4]
-      end
-    end
-    next_powers.uniq!                                 # [2,3,3,4] => [2,3,4]
-    next_powers - power_set                           # [2,3,4] - [1,2] = [3,4]
+  def self.generate_next_powers(power_set)
+    power_set.product(power_set).map { |p1, p2| p1+p2 }.uniq - power_set
   end
 
   # build_power_sets([1,2], [3,4]) => [[1,2,3], [1,2,4]]
